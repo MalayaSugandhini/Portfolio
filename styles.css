@@ -396,3 +396,84 @@ header {
 .project-links a:hover {
     color: #00ffc8;
 }
+
+/* Experience Section Styling */
+.experience-section {
+    padding: 80px 20px;
+    text-align: center;
+    background: #121212;
+    color: white;
+}
+
+.experience-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.experience-intro {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.experience-timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.experience-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.experience-item:hover {
+    transform: scale(1.05);
+}
+
+.company-logo {
+    width: 80px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.experience-details {
+    text-align: left;
+}
+
+.experience-details h3 {
+    margin: 5px 0;
+    font-size: 1.5rem;
+}
+
+.experience-details h4 {
+    font-size: 1rem;
+    color: #00ffc8;
+    margin-bottom: 10px;
+}
+
+.experience-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.experience-details ul li {
+    margin-bottom: 5px;
+    padding-left: 15px;
+    position: relative;
+}
+
+.experience-details ul li::before {
+    content: '•';
+    color: #00ffc8;
+    position: absolute;
+    left: 0;
+}

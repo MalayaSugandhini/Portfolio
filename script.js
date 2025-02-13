@@ -151,15 +151,36 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("Script Loaded Successfully!");
+
     const contactForm = document.getElementById("contact-form");
     const successMessage = document.getElementById("form-success");
+
+    if (!contactForm) {
+        console.error("Contact form not found! Check your HTML.");
+        return;
+    }
 
     contactForm.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent default form submission
 
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const message = document.getElementById("message").value.trim();
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const messageInput = document.getElementById("message");
+
+        if (!nameInput || !emailInput || !messageInput) {
+            console.error("One or more input fields are missing!");
+            return;
+        }
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
+
+        // Debugging Logs
+        console.log("Name:", name);
+        console.log("Email:", email);
+        console.log("Message:", message);
 
         if (!name || !email || !message) {
             alert("Please fill out all fields before submitting.");
@@ -181,7 +202,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function validateEmail(email) {
-        const re = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+        const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return re.test(email);
     }
 });
+

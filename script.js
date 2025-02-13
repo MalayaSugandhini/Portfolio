@@ -120,3 +120,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // Default: Show all projects
     document.querySelector(".filter-btn[data-filter='all']").click();
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const experienceItems = document.querySelectorAll(".experience-item");
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    experienceItems.forEach(item => {
+        observer.observe(item);
+    });
+});

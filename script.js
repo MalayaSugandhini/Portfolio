@@ -134,3 +134,54 @@ document.addEventListener("DOMContentLoaded", function () {
         observer.observe(item);
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const testimonials = document.querySelectorAll(".testimonial-card");
+    let index = 0;
+    
+    function showNextTestimonial() {
+        testimonials.forEach((testimonial, i) => {
+            testimonial.style.display = i === index ? "block" : "none";
+        });
+        index = (index + 1) % testimonials.length;
+    }
+    
+    showNextTestimonial(); // Show first testimonial immediately
+    setInterval(showNextTestimonial, 5000); // Auto-scroll every 5 seconds
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.getElementById("contact-form");
+    const successMessage = document.getElementById("form-success");
+    
+    contactForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission
+        
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+        
+        if (name === "" || email === "" || message === "") {
+            alert("Please fill out all fields before submitting.");
+            return;
+        }
+        
+        if (!validateEmail(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+        
+        // Simulate form submission
+        successMessage.style.display = "block";
+        contactForm.reset();
+        
+        setTimeout(() => {
+            successMessage.style.display = "none";
+        }, 5000);
+    });
+    
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+});

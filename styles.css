@@ -477,3 +477,157 @@ header {
     position: absolute;
     left: 0;
 }
+
+/* Testimonials Section Styling */
+.testimonials-section {
+    padding: 80px 20px;
+    text-align: center;
+    background: #1e1e1e;
+    color: white;
+}
+
+.testimonials-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.testimonials-intro {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.testimonial-slider {
+    display: flex;
+    overflow: hidden;
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+}
+
+.testimonial-card {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease-in-out;
+}
+
+.quote {
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.testimonial-card h4 {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #00ffc8;
+}
+
+.collaborations {
+    margin-top: 50px;
+}
+
+.collaborations h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.company-logos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.company-logos img {
+    width: 100px;
+    height: auto;
+    transition: transform 0.3s;
+}
+
+.company-logos img:hover {
+    transform: scale(1.1);
+}
+
+/* Contact Section Styling */
+.contact-section {
+    padding: 80px 20px;
+    text-align: center;
+    background: #121212;
+    color: white;
+}
+
+.contact-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.contact-intro {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #00ffc8;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #ff4081;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    margin: auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.contact-form textarea {
+    height: 100px;
+}
+
+.contact-form button {
+    background: #00ffc8;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.contact-form button:hover {
+    background: #ff4081;
+}
+
+#form-success {
+    margin-top: 15px;
+    color: #00ffc8;
+    display: none;
+}
+

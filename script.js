@@ -62,40 +62,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 document.addEventListener("DOMContentLoaded", function () {
-    const ctx = document.getElementById("skills-chart").getContext("2d");
-    
-    const skillsData = {
-        labels: ["Frontend", "Backend", "Cloud & DevOps", "Databases"],
-        datasets: [{
-            label: "Proficiency Level",
-            data: [90, 85, 80, 75],
-            backgroundColor: "rgba(0, 255, 200, 0.2)",
-            borderColor: "#00ffc8",
-            borderWidth: 2,
-            pointBackgroundColor: "#00ffc8"
-        }]
-    };
-    
-    new Chart(ctx, {
-        type: "radar",
-        data: skillsData,
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                r: {
-                    beginAtZero: true,
-                    grid: { color: "rgba(255, 255, 255, 0.2)" },
-                    angleLines: { color: "rgba(255, 255, 255, 0.2)" },
-                    pointLabels: { color: "#ffffff" }
-                }
-            },
-            plugins: {
-                legend: { display: false }
-            }
+    const themeToggle = document.querySelector(".theme-toggle");
+
+    // Apply saved theme preference
+    if (localStorage.getItem("theme") === "light") {
+        document.body.classList.add("light-mode");
+        themeToggle.innerHTML = "☀️";
+    }
+
+    // Toggle Dark/Light Mode
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("light-mode");
+
+        if (document.body.classList.contains("light-mode")) {
+            localStorage.setItem("theme", "light");
+            themeToggle.innerHTML = "☀️";
+        } else {
+            localStorage.setItem("theme", "dark");
+            themeToggle.innerHTML = "🌙";
         }
+
+        // Apply smooth transition
+        document.body.style.transition = "background-color 0.3s ease, color 0.3s ease";
     });
+
+    console.log("Last section loaded without charts!");
 });
+
 document.addEventListener("DOMContentLoaded", function () {
     const filterButtons = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
@@ -214,6 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Toggle Dark/Light Mode
     themeToggle.addEventListener("click", function () {
         document.body.classList.toggle("light-mode");
+
         if (document.body.classList.contains("light-mode")) {
             localStorage.setItem("theme", "light");
             themeToggle.innerHTML = "☀️";
@@ -221,7 +215,8 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("theme", "dark");
             themeToggle.innerHTML = "🌙";
         }
+
+        // Apply smooth transition only when toggling
+        document.body.style.transition = "background-color 0.3s ease, color 0.3s ease";
     });
 });
-
-gsap.from(".footer", { opacity: 0, y: 50, duration: 1, ease: "power2.out" });

@@ -153,35 +153,35 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     const contactForm = document.getElementById("contact-form");
     const successMessage = document.getElementById("form-success");
-    
+
     contactForm.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent default form submission
-        
+
         const name = document.getElementById("name").value.trim();
         const email = document.getElementById("email").value.trim();
         const message = document.getElementById("message").value.trim();
-        
-        if (name === "" || email === "" || message === "") {
+
+        if (!name || !email || !message) {
             alert("Please fill out all fields before submitting.");
             return;
         }
-        
+
         if (!validateEmail(email)) {
             alert("Please enter a valid email address.");
             return;
         }
-        
+
         // Simulate form submission
         successMessage.style.display = "block";
         contactForm.reset();
-        
+
         setTimeout(() => {
             successMessage.style.display = "none";
         }, 5000);
     });
-    
+
     function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const re = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
         return re.test(email);
     }
 });

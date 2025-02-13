@@ -631,3 +631,56 @@ header {
     display: none;
 }
 
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    backdrop-filter: blur(10px); /* Glassmorphism Effect */
+    box-shadow: 0 -2px 10px rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-links a {
+    color: #0abde3;
+    text-decoration: none;
+    margin: 0 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.footer-links a:hover {
+    color: #ff9ff3;
+    text-shadow: 0 0 10px rgba(255, 159, 243, 0.8);
+}
+
+/* Dark/Light Mode Button */
+.theme-toggle {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.2);
+}
+
+/* Light Mode Styling */
+.light-mode .footer {
+    background: rgba(255, 255, 255, 0.85);
+    color: black;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+

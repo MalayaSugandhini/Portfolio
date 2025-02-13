@@ -151,36 +151,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("Script Loaded Successfully!");
-
     const contactForm = document.getElementById("contact-form");
     const successMessage = document.getElementById("form-success");
 
-    if (!contactForm) {
-        console.error("Contact form not found! Check your HTML.");
-        return;
-    }
+    contactForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-    contactForm.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent default form submission
-
-        const nameInput = document.getElementById("name");
-        const emailInput = document.getElementById("email");
-        const messageInput = document.getElementById("message");
-
-        if (!nameInput || !emailInput || !messageInput) {
-            console.error("One or more input fields are missing!");
-            return;
-        }
-
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const message = messageInput.value.trim();
-
-        // Debugging Logs
-        console.log("Name:", name);
-        console.log("Email:", email);
-        console.log("Message:", message);
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
 
         if (!name || !email || !message) {
             alert("Please fill out all fields before submitting.");
@@ -192,13 +171,29 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Simulate form submission
-        successMessage.style.display = "block";
-        contactForm.reset();
+        // Sending email request to backend
+        try {
+            const response = await fetch("http://localhost:5000/send-email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email, message }),
+            });
 
-        setTimeout(() => {
-            successMessage.style.display = "none";
-        }, 5000);
+            const data = await response.json();
+            if (response.ok) {
+                successMessage.style.display = "block";
+                contactForm.reset();
+
+                setTimeout(() => {
+                    successMessage.style.display = "none";
+                }, 5000);
+            } else {
+                alert("Failed to send email: " + data.error);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Something went wrong. Try again later.");
+        }
     });
 
     function validateEmail(email) {
@@ -207,3 +202,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.querySelector(".theme-toggle");
+
+    // Apply saved theme preference
+    if (localStorage.getItem("theme") === "light") {
+        document.body.classList.add("light-mode");
+        themeToggle.innerHTML = "☀️";
+    }
+
+    // Toggle Dark/Light Mode
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("light-mode");
+        if (document.body.classList.contains("light-mode")) {
+            localStorage.setItem("theme", "light");
+            themeToggle.innerHTML = "☀️";
+        } else {
+            localStorage.setItem("theme", "dark");
+            themeToggle.innerHTML = "🌙";
+        }
+    });
+});
+
+gsap.from(".footer", { opacity: 0, y: 50, duration: 1, ease: "power2.out" });

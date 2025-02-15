@@ -1,6 +1,7 @@
 # 🚀 Malaya Sugandhini - Portfolio Website
 
 Welcome to my **personal portfolio website**! This project showcases my **skills, projects, experiences, and achievements** in web development, cloud technologies, and DevOps.
+Open the **[Live Demo](https://malayasugandhini.github.io/Portfolio/)** in your preferred web browser.
 
 ---
 

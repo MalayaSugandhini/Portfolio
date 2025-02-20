@@ -85,6 +85,21 @@ header {
     overflow: hidden; /* Prevent unwanted scroll */
 }
 
+.hero-dynamic {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    display: block;
+    text-align: left; /* Ensures alignment matches title & subtitle */
+    margin-top: 10px; /* Adjust spacing above */
+    margin-bottom: 10px; /* Adjust spacing below */
+    min-height: 40px; /* Keeps space reserved to avoid jumping effect */
+}
+
+
+
+
+
 /* Left Side Text */
 .hero-text {
     flex: 1;
@@ -211,30 +226,139 @@ header {
     margin: 10px 0;
 }
 
-.timeline {
+
+
+/* 🔹 Timeline Section */
+.timeline-section {
     margin-top: 50px;
+    padding: 40px 20px;
 }
 
-.timeline h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
+.timeline-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    color: #00bcd4;
 }
 
-.timeline ul {
-    list-style: none;
-    padding: 0;
-    max-width: 600px;
+/* 🔹 Timeline Container */
+.timeline {
+    max-width: 700px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.timeline li {
+/* 🔹 Remove Bullet Points */
+.timeline ul {
+    list-style: none; /* Removes bullets */
+    padding: 0; /* Removes default padding */
+}
+
+.timeline-item {
     background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
+    padding: 15px 20px;
     border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 10px rgba(0, 188, 212, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid rgba(0, 188, 212, 0.5);
 }
 
+/* 🔹 Hover Effect */
+.timeline-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.02);
+}
+
+/* 🔹 When Job is Opened */
+.timeline-item.expanded {
+    background: rgba(0, 255, 255, 0.15);
+    box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.5);
+}
+
+/* 🔹 Header (Title + Arrow) */
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #00bcd4;
+    padding: 15px;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
+}
+
+/* 🔹 Hover Effect for Job Title */
+.timeline-header:hover {
+    background: rgba(0, 188, 212, 0.2);
+}
+
+/* 🔹 Arrow Rotation */
+.arrow-icon {
+    font-size: 18px;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 🔹 Expanded Arrow Rotation */
+.timeline-item.expanded .arrow-icon {
+    transform: rotate(180deg);
+}
+
+/* 🔹 Job Details - Initially Hidden */
+.job-details {
+    display: none;
+    padding-top: 10px;
+    font-size: 1rem;
+    color: #fff;
+    text-align: left;
+    padding: 15px;
+    border-left: 4px solid #00bcd4;
+    background: rgba(0, 188, 212, 0.15);
+    border-radius: 5px;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* 🔹 Smooth Expand Effect */
+.job-details.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 🔹 Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 🔹 Responsive Design */
+@media (max-width: 768px) {
+    .timeline {
+        max-width: 95%;
+    }
+
+    .timeline-header {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    .job-details {
+        font-size: 0.9rem;
+        padding: 12px;
+    }
+}
+
+
+/* Skills Section Styling */
 /* Skills Section Styling */
 .skills-section {
     padding: 80px 20px;
@@ -262,6 +386,7 @@ header {
 }
 
 .skill-card {
+    position: relative;
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
@@ -270,6 +395,7 @@ header {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, background 0.3s;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .skill-card:hover {
@@ -285,11 +411,25 @@ header {
     margin: 10px 0;
 }
 
-#skills-chart {
-    margin-top: 50px;
+.slide-up {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
     width: 100%;
-    max-width: 600px;
-    height: 300px;
+    padding: 10px;
+    background: rgba(0, 188, 212, 0.3); /* Light cyan */
+    color: #121212;
+    font-weight: bold;
+    text-align: center;
+    transition: bottom 0.3s ease-in-out;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(3, 231, 231, 0.5); /* Neon Cyan Glow */
+}
+
+
+.skill-card:hover .slide-up {
+    bottom: 0;
 }
 
 /* Projects Section Styling */

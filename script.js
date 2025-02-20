@@ -1,87 +1,92 @@
 // Wait until the DOM is fully loaded before executing any JavaScript
 document.addEventListener("DOMContentLoaded", function () {
-    /*** 🔹 THEME TOGGLE FUNCTIONALITY 🔹 ***/
-    
-    const themeToggle = document.querySelector(".theme-toggle");
-
-    // Function to apply the saved theme (light or dark) when the page loads
-    function applyTheme() {
-        if (localStorage.getItem("theme") === "light") {
-            document.body.classList.add("light-mode");
-            themeToggle.innerHTML = "☀️"; // Sun icon for light mode
-        } else {
-            document.body.classList.remove("light-mode");
-            themeToggle.innerHTML = "🌙"; // Moon icon for dark mode
-        }
-    }
-    applyTheme(); // Apply the saved theme on page load
-
-    // Toggle theme function (Accessible globally from HTML onclick)
-    window.toggleTheme = function () {
-        document.body.classList.toggle("light-mode");
-
-        if (document.body.classList.contains("light-mode")) {
-            localStorage.setItem("theme", "light");
-            themeToggle.innerHTML = "☀️";
-        } else {
-            localStorage.setItem("theme", "dark");
-            themeToggle.innerHTML = "🌙";
-        }
-
-        // Apply a smooth transition effect when switching themes
-        document.body.style.transition = "background-color 0.3s ease, color 0.3s ease";
-    };
 
     /*** 🔹 NAVIGATION SMOOTH SCROLLING 🔹 ***/
-    
     const navLinks = document.querySelectorAll(".nav-links a");
-    
-    // Enable smooth scrolling when clicking navigation links
+
     navLinks.forEach(link => {
         link.addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent the default anchor behavior
-            const targetId = this.getAttribute("href").substring(1); // Get section ID
+            event.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
             document.getElementById(targetId).scrollIntoView({
-                behavior: "smooth" // Smooth scrolling effect
+                behavior: "smooth"
             });
         });
     });
 
     /*** 🔹 MOBILE MENU TOGGLE FUNCTION 🔹 ***/
-
     const mobileMenuButton = document.createElement("button");
     mobileMenuButton.classList.add("mobile-menu-toggle");
-    mobileMenuButton.innerHTML = "☰"; // Menu icon
+    mobileMenuButton.innerHTML = "☰";
 
     document.querySelector(".navbar").appendChild(mobileMenuButton);
 
-    // Toggle mobile menu when clicking the button
     mobileMenuButton.addEventListener("click", function () {
         document.querySelector(".nav-links").classList.toggle("active");
     });
-});
 
-/*** 🔹 TIMELINE ANIMATION (INTERSECTION OBSERVER) 🔹 ***/
-
-document.addEventListener("DOMContentLoaded", function () {
-    const timelineItems = document.querySelectorAll(".timeline li");
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible"); // Add animation class
-            }
-        });
-    }, { threshold: 0.5 });
-
-    timelineItems.forEach(item => {
-        observer.observe(item);
+    /*** 🔹 HERO SECTION ANIMATION 🔹 ***/
+    var typed = new Typed("#dynamic-text", {
+        strings: ["Software Developer", "Freelancer", "Open Source Contributor", "Cloud Engineer"],
+        typeSpeed: 90,
+        backSpeed: 60,
+        startDelay: 500,
+        backDelay: 2000,
+        loop: true,
+        showCursor: true,
+        cursorChar: "|",
+        smartBackspace: true,
+        fadeOut: true,
+        fadeOutDelay: 300,
     });
-});
 
-/*** 🔹 PROJECT FILTERING FUNCTION 🔹 ***/
+    function toggleDescription(jobId) {
+        let description = document.getElementById(jobId);
+        let timelineItem = description.closest(".timeline-item");
+        let arrowIcon = timelineItem.querySelector(".arrow-icon");
+    
+        if (description.style.display === "none" || description.style.display === "") {
+            description.style.display = "block"; 
+            arrowIcon.innerHTML = "▲"; 
+            timelineItem.classList.add("expanded"); 
+        } else {
+            description.style.display = "none"; 
+            arrowIcon.innerHTML = "▼"; 
+            timelineItem.classList.remove("expanded"); 
+        }
+    }
+    
+    // Ensure this function is globally accessible
+    window.toggleDescription = toggleDescription;
+    
+    // Hide all descriptions on page load
+    document.addEventListener("DOMContentLoaded", function () {
+        let jobDescriptions = document.querySelectorAll(".job-details");
+        jobDescriptions.forEach(description => {
+            description.style.display = "none"; 
+        });
+    
+        console.log("JavaScript Loaded ✅");
+    });
 
-document.addEventListener("DOMContentLoaded", function () {
+    /*** 🔹 SKILLS FILTERING FUNCTION 🔹 ***/
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("JavaScript Loaded ✅");
+        
+        const skillCards = document.querySelectorAll(".skill-card");
+    
+        skillCards.forEach(card => {
+            card.addEventListener("mouseenter", () => {
+                console.log(`Hovered on: ${card.dataset.category}`);
+            });
+        });
+    });
+    
+    
+
+
+
+    /*** 🔹 PROJECT FILTERING FUNCTION 🔹 ***/
     const filterButtons = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
 
@@ -89,11 +94,9 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener("click", function () {
             const category = this.getAttribute("data-filter");
 
-            // Remove active class from all buttons and add to clicked one
             filterButtons.forEach(btn => btn.classList.remove("active"));
             this.classList.add("active");
 
-            // Show or hide project cards based on selected category
             projectCards.forEach(card => {
                 if (category === "all" || card.getAttribute("data-category") === category) {
                     card.style.display = "block";
@@ -103,20 +106,30 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     });
-
-    // Set default filter to show all projects
+    document.addEventListener("DOMContentLoaded", function () {
+        function toggleDescription(jobId) {  // ❌ Not accessible globally
+            let description = document.getElementById(jobId);
+            let arrowIcon = description.previousElementSibling.querySelector(".arrow-icon");
+    
+            if (description.style.display === "none" || description.style.display === "") {
+                description.style.display = "block";
+                arrowIcon.innerHTML = "▲";
+            } else {
+                description.style.display = "none";
+                arrowIcon.innerHTML = "▼";
+            }
+        }
+    });
+    
     document.querySelector(".filter-btn[data-filter='all']").click();
-});
 
-/*** 🔹 EXPERIENCE SECTION ANIMATION 🔹 ***/
-
-document.addEventListener("DOMContentLoaded", function () {
+    /*** 🔹 EXPERIENCE SECTION ANIMATION 🔹 ***/
     const experienceItems = document.querySelectorAll(".experience-item");
 
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add("visible"); // Add animation effect
+                entry.target.classList.add("visible");
             }
         });
     }, { threshold: 0.5 });
@@ -124,11 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
     experienceItems.forEach(item => {
         observer.observe(item);
     });
-});
 
-/*** 🔹 TESTIMONIALS AUTO-SCROLL FUNCTION 🔹 ***/
-
-document.addEventListener("DOMContentLoaded", function () {
+    /*** 🔹 TESTIMONIALS AUTO-SCROLL FUNCTION 🔹 ***/
     const testimonials = document.querySelectorAll(".testimonial-card");
     let index = 0;
 
@@ -139,24 +149,20 @@ document.addEventListener("DOMContentLoaded", function () {
         index = (index + 1) % testimonials.length;
     }
 
-    showNextTestimonial(); // Show first testimonial immediately
-    setInterval(showNextTestimonial, 5000); // Auto-scroll every 5 seconds
-});
+    showNextTestimonial();
+    setInterval(showNextTestimonial, 5000);
 
-/*** 🔹 CONTACT FORM HANDLING FUNCTION 🔹 ***/
-
-document.addEventListener("DOMContentLoaded", function () {
+    /*** 🔹 CONTACT FORM HANDLING FUNCTION 🔹 ***/
     const contactForm = document.getElementById("contact-form");
     const successMessage = document.getElementById("form-success");
 
     contactForm.addEventListener("submit", async function (event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault();
 
         const name = document.getElementById("name").value.trim();
         const email = document.getElementById("email").value.trim();
         const message = document.getElementById("message").value.trim();
 
-        // Form validation
         if (!name || !email || !message) {
             alert("Please fill out all fields before submitting.");
             return;
@@ -167,7 +173,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Sending email request to backend
         try {
             const response = await fetch("http://localhost:5000/send-email", {
                 method: "POST",
@@ -192,7 +197,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Email validation function
     function validateEmail(email) {
         const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return re.test(email);

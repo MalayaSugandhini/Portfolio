@@ -29,6 +29,12 @@
                 Hi There! <span class="wave">👋</span><br>
                 <span class="highlight">I'M Malaya Sugandhini</span>
             </h1>
+            <!-- 🔹 Add Dynamic Typing Effect Here -->
+            <h2 class="hero-dynamic">
+                <span id="dynamic-text"></span>
+            </h2>
+
+
             <p class="hero-subtitle">
                 Building accessible, high-performance web and mobile applications.
             </p>
@@ -48,7 +54,7 @@
     <section id="about" class="about-section">
         <div class="container">
             <h2>About Me</h2>
-            <p class="bio">I am a passionate software engineer with expertise in React, Flutter, and TypeScript. With hands-on experience in cloud technologies like AWS and Azure, I specialize in building scalable, high-performance web and mobile applications.</p>
+            <p class="bio">I'm a passionate software engineer with expertise in full-stack web development, cloud technologies, and scalable applications.</p>
             
             <div class="highlights">
                 <div class="card">
@@ -73,56 +79,92 @@
                 </div>
             </div>
             
-            <div class="timeline">
-                <h3>Career Timeline</h3>
-                <ul>
-                    <li>
-                        <span>2023 - Present</span>
-                        <p>Software Engineer at KPIT Technologies, working on cloud solutions and scalable applications.</p>
-                    </li>
-                    <li>
-                        <span>2022 - 2023</span>
-                        <p>Graduate Assistant at Northwest Missouri State University, assisting in cloud and software projects.</p>
-                    </li>
-                    <li>
-                        <span>2019 - 2022</span>
-                        <p>Full-Stack Developer & Consultant, developing React and Flutter-based applications.</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <section id="skills" class="skills-section">
-        <div class="container">
-            <h2>Skills & Tech Stack</h2>
-            <p class="skills-intro">I specialize in a diverse set of technologies to build scalable and high-performance applications.</p>
+            <section class="timeline-section">
+                <h2 class="timeline-title">Career Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-header" onclick="toggleDescription('job1')">
+                            <h4 class="job-title">Software Engineer at KPIT Technologies</h4>
+                            <span class="arrow-icon">▼</span>
+                        </div>
+                        <div class="job-details" id="job1">
+                            <ul>
+                                <li>Worked on cloud-based solutions, DevOps, and scalable applications.</li>
+                                <li>Developed scalable applications in React, Node.js.</li>
+                                <li>Collaborated with cross-functional teams.</li>
+                            </ul>
+                        </div>
+                    </div>
+        
+                    <div class="timeline-item">
+                        <div class="timeline-header" onclick="toggleDescription('job2')">
+                            <h4 class="job-title">Graduate Assistant at Northwest Missouri State University</h4>
+                            <span class="arrow-icon">▼</span>
+                        </div>
+                        <div class="job-details" id="job2">
+                            <ul>
+                                <li>Assisted in cloud-based and software projects.</li>
+                                <li>Worked on research & development in DevOps and cloud computing.</li>
+                                <li>Helped students with hands-on cloud labs.</li>
+                            </ul>
+                        </div>
+                    </div>
+        
+                    <div class="timeline-item">
+                        <div class="timeline-header" onclick="toggleDescription('job3')">
+                            <h4 class="job-title">Full-Stack Developer & Consultant</h4>
+                            <span class="arrow-icon">▼</span>
+                        </div>
+                        <div class="job-details" id="job3">
+                            <ul>
+                                <li>Developed web and mobile apps using React and Flutter.</li>
+                                <li>Provided consulting for scalable solutions.</li>
+                                <li>Worked on cloud integration & deployment strategies.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
             
-            <div class="skills-grid">
-                <div class="skill-card" data-category="frontend">
-                    <span>🎨</span>
-                    <h3>Frontend</h3>
-                    <p>React, Vue.js, TypeScript, Flutter</p>
-                </div>
-                <div class="skill-card" data-category="backend">
-                    <span>⚙️</span>
-                    <h3>Backend</h3>
-                    <p>Node.js, Python, GraphQL, Spring Cloud</p>
-                </div>
-                <div class="skill-card" data-category="cloud-devops">
-                    <span>☁️</span>
-                    <h3>Cloud & DevOps</h3>
-                    <p>AWS, Azure, Docker, Kubernetes</p>
-                </div>
-                <div class="skill-card" data-category="databases">
-                    <span>🗄️</span>
-                    <h3>Databases</h3>
-                    <p>PostgreSQL, MongoDB, Firebase</p>
-                </div>
-            </div>
-    
-            <canvas id="skills-chart"></canvas>
-        </div>
     </section>
+
+
+
+    <section id="skills" class="skills-section">
+    <div class="container">
+        <h2>Skills & Tech Stack</h2>
+        <p class="skills-intro">I specialize in a diverse set of technologies to build scalable and high-performance applications.</p>
+        
+        <div class="skills-grid">
+            <div class="skill-card" data-category="frontend">
+                <span>🎨</span>
+                <h3>Frontend</h3>
+                <p class="slide-up">React, Vue.js, TypeScript, Flutter</p>
+            </div>
+            <div class="skill-card" data-category="backend">
+                <span>⚙️</span>
+                <h3>Backend</h3>
+                <p class="slide-up">Node.js, Python, GraphQL, Spring Cloud</p>
+            </div>
+            <div class="skill-card" data-category="cloud-devops">
+                <span>☁️</span>
+                <h3>Cloud & DevOps</h3>
+                <p class="slide-up">AWS, Azure, Docker, Kubernetes</p>
+            </div>
+            <div class="skill-card" data-category="databases">
+                <span>🗄️</span>
+                <h3>Databases</h3>
+                <p class="slide-up">PostgreSQL, MongoDB, Firebase</p>
+            </div>
+        </div>
+
+        <canvas id="skills-chart"></canvas>
+    </div>
+</section>
+
+
+
+
     <section id="projects" class="projects-section">
         <div class="container">
             <h2>Featured Projects</h2>
@@ -274,8 +316,11 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js"></script>
     <script src="particles.js"></script>
+    <!-- Ensure script.js is loaded at the end -->
+    <script src="script.js" defer></script>
+
 </body>
 </html>

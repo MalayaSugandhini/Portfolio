@@ -71,16 +71,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /*** 🔹 SKILLS FILTERING FUNCTION 🔹 ***/
     document.addEventListener("DOMContentLoaded", function () {
-        console.log("JavaScript Loaded ✅");
-        
         const skillCards = document.querySelectorAll(".skill-card");
     
-        skillCards.forEach(card => {
-            card.addEventListener("mouseenter", () => {
-                console.log(`Hovered on: ${card.dataset.category}`);
+        skillCards.forEach((card) => {
+            card.addEventListener("click", () => {
+                card.classList.toggle("flipped");
             });
         });
     });
+    
+    
+    
+    
     
     
 

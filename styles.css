@@ -359,7 +359,6 @@ header {
 
 
 /* Skills Section Styling */
-/* Skills Section Styling */
 .skills-section {
     padding: 80px 20px;
     text-align: center;
@@ -385,52 +384,58 @@ header {
     gap: 20px;
 }
 
+/* Skill Card Styling */
 .skill-card {
     position: relative;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
     width: 250px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, background 0.3s;
+    height: 150px;
+    perspective: 1000px;
     cursor: pointer;
-    overflow: hidden;
 }
 
-.skill-card:hover {
-    transform: scale(1.05);
-    background: rgba(0, 255, 200, 0.2);
-}
-
-.skill-card span {
-    font-size: 2rem;
-}
-
-.skill-card h3 {
-    margin: 10px 0;
-}
-
-.slide-up {
-    position: absolute;
-    bottom: -100%;
-    left: 0;
+.card-inner {
     width: 100%;
-    padding: 10px;
-    background: rgba(0, 188, 212, 0.3); /* Light cyan */
-    color: #121212;
-    font-weight: bold;
-    text-align: center;
-    transition: bottom 0.3s ease-in-out;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    box-shadow: 0px 4px 15px rgba(3, 231, 231, 0.5); /* Neon Cyan Glow */
+    height: 100%;
+    transition: transform 0.6s ease-in-out;
+    transform-style: preserve-3d;
 }
 
-
-.skill-card:hover .slide-up {
-    bottom: 0;
+.skill-card.flipped .card-inner {
+    transform: rotateY(180deg);
 }
+
+/* Front and Back Side */
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 255, 255, 0.5);
+    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Front Side */
+.card-front {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Back Side */
+.card-back {
+    background: rgba(0, 255, 200, 0.2);
+    transform: rotateY(180deg);
+}
+
+/* Tilt and Glow on Hover */
+.skill-card:hover .card-inner {
+    transform: scale(1.1) rotateX(10deg) rotateY(10deg);
+    box-shadow: 0px 10px 25px rgba(0, 255, 255, 0.8);
+}
+
 
 /* Projects Section Styling */
 .projects-section {

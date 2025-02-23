@@ -82,100 +82,117 @@ header {
     min-height: 100vh;
     padding: 50px 10%;
     background: url('assets/your-background.jpg') center/cover no-repeat;
-    overflow: hidden; /* Prevent unwanted scroll */
-}
-
-.hero-dynamic {
+    overflow: hidden;
+  }
+  
+  .hero-dynamic {
     font-size: 2rem;
     font-weight: bold;
     color: var(--primary-color);
     display: block;
-    text-align: left; /* Ensures alignment matches title & subtitle */
-    margin-top: 10px; /* Adjust spacing above */
-    margin-bottom: 10px; /* Adjust spacing below */
-    min-height: 40px; /* Keeps space reserved to avoid jumping effect */
-}
-
-
-
-
-
-/* Left Side Text */
-.hero-text {
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 40px;
+  }
+  
+  /* Left Side Text */
+  .hero-text {
     flex: 1;
     text-align: left;
-    max-width: 50%; /* Prevents stretching too much */
-}
-
-/* Title and Subtitle */
-.hero-title {
+    max-width: 50%;
+  }
+  
+  /* Title and Subtitle */
+  .hero-title {
     font-size: 3rem;
     font-weight: bold;
     color: #ffffff;
     margin-bottom: 10px;
-}
-
-.hero-subtitle {
+  }
+  
+  .hero-subtitle {
     font-size: 1.5rem;
     color: #ddd;
     margin-bottom: 20px;
-}
-
-/* Buttons */
-.hero-buttons {
+  }
+  
+  /* Buttons */
+  .hero-buttons {
     display: flex;
     gap: 20px;
-}
-
-.btn-primary, .btn-secondary {
+  }
+  
+  .btn-primary, .btn-secondary {
     padding: 12px 20px;
     font-size: 1rem;
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-}
-
-.btn-primary {
+  }
+  
+  .btn-primary {
     background: #00adb5;
     color: #fff;
-}
-
-.btn-secondary {
+  }
+  
+  .btn-secondary {
     background: #ff4081;
     color: #fff;
-}
-
-/* Right Side Image */
-.hero-image {
+  }
+  
+  /* Right Side Image */
+  .hero-image {
     flex: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-}
-
-.hero-image img {
-    width: 350px; /* Adjust size */
+    position: relative; /* Added to anchor absolute positioning */
+  }
+  
+  .hero-image img {
+    width: 350px;
     height: auto;
     border-radius: 10px;
     transform: scale(1.1);
-}
-
-/* Waving Hand Animation */
-@keyframes wave {
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  #naruto-message {
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Waving Hand Animation */
+  @keyframes wave {
     0% { transform: rotate(0deg); }
     20% { transform: rotate(20deg); }
     40% { transform: rotate(-10deg); }
     60% { transform: rotate(10deg); }
     80% { transform: rotate(-5deg); }
     100% { transform: rotate(0deg); }
-}
-
-.wave {
+  }
+  
+  .wave {
     display: inline-block;
     animation: wave 1.5s infinite;
     transform-origin: 70% 70%;
-}
+  }
+  
+
 
 
 /* About Me Section Styling */
@@ -512,9 +529,12 @@ header {
 }
 
 .project-card img {
-    width: 100%;
+    width: 80px; /* Set a fixed width */
+    height: 80px; /* Set a fixed height */
+    object-fit: contain; /* Ensures the image fits well */
     border-radius: 10px;
 }
+
 
 .project-card h3 {
     margin: 10px 0;

@@ -359,6 +359,8 @@ header {
 
 
 /* Skills Section Styling */
+/* Skills Section Styling */
+/* Skills Section Styling */
 .skills-section {
     padding: 80px 20px;
     text-align: center;
@@ -370,6 +372,10 @@ header {
     font-size: 2.5rem;
     margin-bottom: 20px;
 }
+.card-front h3 {
+    white-space: nowrap;
+}
+
 
 .skills-intro {
     font-size: 1.2rem;
@@ -386,9 +392,8 @@ header {
 
 /* Skill Card Styling */
 .skill-card {
-    position: relative;
-    width: 250px;
-    height: 150px;
+    width: 300px;
+    height: 175px;
     perspective: 1000px;
     cursor: pointer;
 }
@@ -396,45 +401,54 @@ header {
 .card-inner {
     width: 100%;
     height: 100%;
-    transition: transform 0.6s ease-in-out;
+    position: relative;
     transform-style: preserve-3d;
+    transition: transform 0.6s;
 }
 
+/* Tilt & Glow Effect */
+/* Tilt & Glow Effect */
+.skill-card:hover .card-inner {
+    transform: scale(1.05) rotateX(20deg) rotateY(20deg); /* Increased Tilt */
+    box-shadow: 0px 15px 30px rgba(0, 255, 255, 0.9); /* Stronger Glow */
+}
+
+/* Flip Effect */
 .skill-card.flipped .card-inner {
     transform: rotateY(180deg);
 }
 
-/* Front and Back Side */
-.card-front,
-.card-back {
-    position: absolute;
+/* Front & Back Panels */
+.card-front, .card-back {
     width: 100%;
     height: 100%;
-    backface-visibility: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 255, 255, 0.5);
-    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Front Side */
+/* Front Styling */
 .card-front {
     background: rgba(255, 255, 255, 0.1);
+    font-size: 1.5rem;
 }
 
-/* Back Side */
+/* Back Styling */
 .card-back {
     background: rgba(0, 255, 200, 0.2);
     transform: rotateY(180deg);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
 }
 
-/* Tilt and Glow on Hover */
-.skill-card:hover .card-inner {
-    transform: scale(1.1) rotateX(10deg) rotateY(10deg);
-    box-shadow: 0px 10px 25px rgba(0, 255, 255, 0.8);
-}
+
+
 
 
 /* Projects Section Styling */
